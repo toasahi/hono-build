@@ -1,11 +1,5 @@
 name: github packages docker image build push
-on : 
-    workflow_dispatch:
-        inputs:
-            version:
-                type: string
-                required: true
-                description: バージョン(1.2.3)
+on : push
 
 
 env:
@@ -40,8 +34,8 @@ jobs:
               with:
                 images: ghcr.io/${{ github.repository_owner}}/${{ env.IMAGE_NAME}}
                 tags: |
-                    type=semver,pattern={{version}},value=v${{ inputs.version }}
                     type=raw,value=latest
+                    type=raw,value=${{github.ref_name}}-${{github.head_ref}}
             - uses: docker/build-push-action@v5
               with:
                 push: true
