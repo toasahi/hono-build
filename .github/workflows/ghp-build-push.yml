@@ -35,7 +35,7 @@ jobs:
                 images: ghcr.io/${{ github.repository_owner}}/${{ env.IMAGE_NAME}}
                 tags: |
                     type=raw,value=latest
-                    type=raw,value=${{github.ref_name}}-"$GITHUB_SHA::7"
+                    type=raw,value=${{github.ref_name}}-${GITHUB_SHA::7}
             - uses: docker/build-push-action@v5
               with:
                 push: true
