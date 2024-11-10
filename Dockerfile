@@ -10,9 +10,6 @@ COPY package.json bun.lockb ./
 
 RUN bun install --production
 
-RUN echo ${SENTRY_TOKEN}
-RUN echo ${JFROG_USERNAME}
-
 # runtime
 FROM oven/bun:distroless AS runtime
 
