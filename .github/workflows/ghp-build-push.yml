@@ -27,5 +27,8 @@ jobs:
                 image-repository: hono/api
                 github-actor: ${{github.actor}}
                 github-repository-owner: ${{github.repository_owner}}
+                build-args: |
+                    SENTRY_TOKEN="aaa"
+                    SENTRY_USER="aaa"
               env:
                 GITHUB_TOKEN: ${{github.token}}

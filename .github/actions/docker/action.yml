@@ -6,9 +6,6 @@ inputs:
     required: false
     description: dockerfileの場所
   build-args:
-    default: |
-      JFROG_USERNAME=user
-      JFROG_PWD=password
     required: false
     description: imageのbuild時に使用する環境変数
   image-repository:
@@ -45,3 +42,4 @@ runs:
         build-args: |
             JFROG_USERNAME=user
             JFROG_PWD=password
+            ${{ inputs.build-args}}
