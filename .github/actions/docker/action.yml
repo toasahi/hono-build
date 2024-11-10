@@ -22,7 +22,7 @@ runs:
       with:
         registry: ghcr.io
         username: ${{ GITHUB_ACTOR }}
-        password: ${{ env.GITHUB_TOKEN }}
+        password: ${{ github.token }}
     - uses: docker/metadata-action@v5
       id: meta
       with:
