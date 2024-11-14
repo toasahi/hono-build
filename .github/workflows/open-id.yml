@@ -17,6 +17,8 @@ jobs:
         runs-on: arc-runner-set
         permissions:
             contents: read # ソースコードのチェックアウトを許可
+        container:
+            image: docker:27.3.1
         timeout-minutes: 5
         steps:
             - uses: actions/checkout@v4
