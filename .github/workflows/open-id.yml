@@ -1,24 +1,38 @@
-name: OpenID Connect
-on: push
+name: github packages docker image build push
+on : push
+
+
 env:
-    ROLE_ARN: arn:aws:iam::${{ secrets.AWS_ID }}:role/${{ secrets.ROLE_NAME}}
-    SESSION_NAME: gh-oidc-${{ github.run_id}}-${{github.run_attempt}}
+    IMAGE_NAME: hono-image
 
 defaults:
     run:
-        shell: bash    
+        shell: bash
+concurrency:
+    group: ${{ github.workflow}}-${{github.ref}}
+    cancel-in-progress: true
 
 jobs:
-    oidc:
+    build-push:
+        runs-on: arc-runner-set
         permissions:
-            id-token: write
+            contents: read # ソースコードのチェックアウトを許可
         timeout-minutes: 5
-        runs-on: ubuntu-22.04
         steps:
-            - uses: aws-actions/configure-aws-credentials@v4
+            - uses: actions/checkout@v4
+            - uses: docker/setup-buildx-action@v3
+            - uses: docker/metadata-action@v5
+              id: meta
               with:
-                aws-region: ap-northeast-1
-                role-to-assume: ${{env.ROLE_ARN}}
-                role-session-name: ${{env.SESSION_NAME}}
-            - run: aws iam list-users
-            - run: aws iam create-user --user-name invalid || true
+                images: ghcr.io
+                tags: |
+                    type=sha,prefix={{branch}}-
+            - uses: docker/build-push-action@v5
+              with:
+                push: true
+                context: .
+                tags: ${{ steps.meta.outputs.tags}}
+                labels: ${{ steps.meta.outputs.labels}}
+                build-args: |
+                    JFROG_USERNAME=user
+                    JFROG_PWD=password
