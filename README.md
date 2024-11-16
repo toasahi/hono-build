@@ -1,4 +1,4 @@
-![branch parameter](https://github.com/github/docs/actions/workflows/open-id.yml/badge.svg?branch=main)
+![branch parameter](https://github.com/toasahi/docs/actions/workflows/open-id.yml/badge.svg?branch=main)
 
 To install dependencies:
 ```sh
