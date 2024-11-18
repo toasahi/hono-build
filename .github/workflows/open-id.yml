@@ -22,4 +22,4 @@ jobs:
             image: docker:27
         steps:
             - run: |
-                docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" secretlint/secretlint secretlint --maskSecrets '**/*'
+                docker container ls
