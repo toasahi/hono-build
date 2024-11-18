@@ -17,6 +17,9 @@ jobs:
         timeout-minutes: 5
         container:
             image: docker:27
+        services:
+            node:
+                image: node:bullseye-slim
         steps:
             - run: |
                 docker container ls
