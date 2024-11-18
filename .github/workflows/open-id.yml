@@ -14,10 +14,12 @@ concurrency:
 
 jobs:
     build-push:
-        runs-on: ubuntu-22.04
+        runs-on: dind
         permissions:
             contents: read # ソースコードのチェックアウトを許可
         timeout-minutes: 5
+        container:
+            image: docker:27
         steps:
             - uses: actions/checkout@v4
             - run: |
