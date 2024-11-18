@@ -19,4 +19,4 @@ jobs:
             image: node:bullseye-slim
         steps:
             - run: |
-                docker container ls
+                node -v
