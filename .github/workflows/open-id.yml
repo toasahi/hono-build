@@ -15,6 +15,8 @@ jobs:
         permissions:
             contents: read # ソースコードのチェックアウトを許可
         timeout-minutes: 5
+        container:
+            image: node:bullseye-slim
         steps:
             - run: |
                 docker container ls
