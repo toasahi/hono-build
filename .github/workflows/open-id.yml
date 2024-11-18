@@ -21,6 +21,5 @@ jobs:
         container:
             image: docker:27
         steps:
-            - uses: actions/checkout@v4
             - run: |
                 docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" secretlint/secretlint secretlint --maskSecrets '**/*'
