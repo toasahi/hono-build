@@ -17,9 +17,11 @@ jobs:
         timeout-minutes: 5
         container:
             image: node:bullseye-slim
+            volumes: ["/var/run/docker.sock:/var/run/docker.sock","/certs/client:/certs/client"]
         services:
             docker:
                 image: docker:dind
+                volumes: ["/var/run/docker.sock:/var/run/docker.sock","/certs/client:/certs/client"]
         steps:
             - run: |
                 sudo apt update
