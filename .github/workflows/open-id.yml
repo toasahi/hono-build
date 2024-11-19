@@ -17,6 +17,15 @@ jobs:
         timeout-minutes: 5
         container:
             image: node:bullseye-slim
+        services:
+            docker:
+                image: docker:dind
         steps:
             - run: |
+                sudo apt update
+                curl -fsSL get.docker.com -o get-docker.sh
+                sh get-docker.sh
+                docker info
+            - run: |
                 node -v
+                sleep 3600
