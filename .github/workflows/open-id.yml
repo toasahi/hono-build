@@ -24,7 +24,7 @@ jobs:
                 volumes: ["/var/run/docker.sock:/var/run/docker.sock","/certs/client:/certs/client"]
         steps:
             - run: |
-                sudo apt update
+                apt update
                 curl -fsSL get.docker.com -o get-docker.sh
                 sh get-docker.sh
                 docker info
