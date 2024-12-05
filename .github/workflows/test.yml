@@ -25,6 +25,9 @@ jobs:
           echo "-------github.workspace----------"
           echo ${{github.workspace}}
           printenv
+        env:
+          CI_DIR: ${{github.workspace}}
+          CI_DIR2: ${{github.workspace}}
 
       
           
