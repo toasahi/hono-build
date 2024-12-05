@@ -16,7 +16,7 @@ jobs:
   test2:
     runs-on: ubuntu-22.04
     container:
-      image: ubuntu-22.04
+      image: ubuntu
     steps:
       - name: echo
         run: |
