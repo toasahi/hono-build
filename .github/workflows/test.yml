@@ -1,0 +1,30 @@
+name: test
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: echo
+        run: |
+          echo "-------GITHUB_WORKSPACE----------"
+          echo ${GITHUB_WORKSPACE}
+          echo "-------github.workspace----------"
+          echo ${{github.workspace}}
+          echo "---------------------------------"
+          printenv
+  test2:
+    runs-on: ubuntu-22.04
+    container:
+      image: ubuntu-22.04
+    steps:
+      - name: echo
+        run: |
+          echo "-------GITHUB_WORKSPACE----------"
+          echo ${GITHUB_WORKSPACE}
+          echo "-------github.workspace----------"
+          echo ${{github.workspace}}
+          printenv
+
+      
+          
